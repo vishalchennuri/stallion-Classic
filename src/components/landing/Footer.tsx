@@ -104,38 +104,59 @@ export default function Footer() {
           >
             <h3 className="text-xl sm:text-2xl mb-4 font-[impact]">CONTACT</h3>
             <address className="not-italic text-gray-300 mb-4">
-              <p>123 Ironclad Way, Fitness City,</p>
-              <p>FC 10001</p>
+              <p>
+                3rd Floor, above Sri Vidya Junior College, Chinthal,Hyderabad
+              </p>
+              <p>Telangana 500037</p>
             </address>
-            <p className="text-gray-300 mb-2">(555) 789-4560</p>
-            <p className="text-gray-300 mb-4">
-              info@stallionextremefitness.com
-            </p>
+            <p className="text-gray-300 mb-2">+91 8885110136</p>
+            <p className="text-gray-300 mb-4">info@stallionclassic.com</p>
 
             {/* Social Media */}
             <StaggerContainer className="flex space-x-4 justify-center sm:justify-start">
               <StaggerItem index={0}>
                 <Link
-                  href="#"
-                  className="text-white hover:text-[#dc4a26] transition-colors"
+                  href="https://www.facebook.com/p/Stallion-Xtreme-Fitness-100084922102459/"
+                  passHref
+                  legacyBehavior
                 >
-                  <Facebook size={24} />
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white hover:text-[#dc4a26] transition-colors"
+                  >
+                    <Facebook size={24} />
+                  </a>
                 </Link>
               </StaggerItem>
               <StaggerItem index={1}>
                 <Link
-                  href="#"
-                  className="text-white hover:text-[#dc4a26] transition-colors"
+                  href="https://www.instagram.com/stallionclassic/"
+                  passHref
+                  legacyBehavior
                 >
-                  <Instagram size={24} />
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white hover:text-[#dc4a26] transition-colors"
+                  >
+                    <Instagram size={24} />
+                  </a>
                 </Link>
               </StaggerItem>
               <StaggerItem index={2}>
                 <Link
-                  href="#"
-                  className="text-white hover:text-[#dc4a26] transition-colors"
+                  href="https://www.youtube.com/@StallionXtremefitness"
+                  passHref
+                  legacyBehavior
                 >
-                  <Youtube size={24} />
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white hover:text-[#dc4a26] transition-colors"
+                  >
+                    <Youtube size={24} />
+                  </a>
                 </Link>
               </StaggerItem>
             </StaggerContainer>

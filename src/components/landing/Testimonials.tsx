@@ -5,31 +5,34 @@ import AnimatedSection, { StaggerContainer, StaggerItem } from "../ui/AnimatedCo
 
 export default function TestimonialsSection() {
   const testimonials = [
-    {
-      id: 1,
-      quote:
-        "I'd done local shows for years but always hesitated to go pro. Stallion Classic changed everything—the backstage organization was military-precise, the judges gave actual constructive feedback (not just politics), and the crowd energy... man, it was like electricity.",
-      name: "Devon Carter",
-      title: "2025 Men's Physique Finalist",
-      image: "/images/landing/test/1.png",
-    },
-    {
-      id: 2,
-      quote:
-        "I'd done local shows for years but always hesitated to go pro. Stallion Classic changed everything—the backstage organization was military-precise, the judges gave actual constructive feedback (not just politics), and the crowd energy... man, it was like electricity.",
-      name: "Devon Carter",
-      title: "2025 Men's Physique Finalist",
-      image: "/images/landing/test/2.png",
-    },
-    {
-      id: 3,
-      quote:
-        "I'd done local shows for years but always hesitated to go pro. Stallion Classic changed everything—the backstage organization was military-precise, the judges gave actual constructive feedback (not just politics), and the crowd energy... man, it was like electricity.",
-      name: "Devon Carter",
-      title: "2025 Men's Physique Finalist",
-      image: "/images/landing/test/3.png",
-    },
-  ]
+   
+  {
+    id: 1,
+    quote:
+      "I used to compete in district-level shows, but Stallion Classic was a whole different league. Everything—from the lighting to the athlete coordination—was handled like a national event. It gave me the exposure and motivation to aim for the national stage.",
+    name: "Rajeev Nair",
+    title: "2025 Men's Physique Finalist – Kerala",
+    image: "/images/landing/test/1.png",
+  },
+  {
+    id: 2,
+    quote:
+      "I've trained for years but never felt recognized until Stallion Classic. The panel actually gave feedback on muscle symmetry and posing technique. For once, it felt like merit really mattered.",
+    name: "Amit Shetty",
+    title: "2025 Classic Physique Runner-Up – Karnataka",
+    image: "/images/landing/test/2.png",
+  },
+  {
+    id: 3,
+    quote:
+      "The crowd, the energy, the organization—Stallion Classic was on another level. I’ve been part of many shows in Delhi, but nothing came close to this. It was like stepping into an international stage right here in India.",
+    name: "Pratik Mehra",
+    title: "2025 Bodybuilding Heavyweight Winner – Delhi",
+    image: "/images/landing/test/3.png",
+  },
+];
+
+  
 
   return (
     <section className="py-16 md:py-24" style={{ backgroundColor: "#181818" }}>
