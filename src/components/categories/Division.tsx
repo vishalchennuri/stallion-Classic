@@ -106,7 +106,7 @@ const divisions = [
   },
   {
     id: "fitness-model",
-    title: "FITNESS MODEL",
+    title: "Denim Jeans",
     subtitle: "Commercial Appeal with Athletic Conditioning",
     image: "/images/cat/division/4a.png",
     keyFacts: [
@@ -131,33 +131,7 @@ const divisions = [
       "/images/cat/division/4d.png",
     ],
   },
-  {
-    id: "sports-model",
-    title: "SPORTS MODEL",
-    subtitle: "Athletic Performance Meets Aesthetic Appeal",
-    image: "/images/cat/division/5a.png",
-    keyFacts: [
-      "Focus on Athletic Functionality and Aesthetics",
-      "Includes Fitness Performance Elements",
-      "Judged on Muscle Tone, Not Size",
-    ],
-    categories: [
-      "Sports Model Male Beginner",
-      "Sports Model Male Novice",
-      "Sports Model Male Open",
-      "Sports Model Male Masters 40+",
-      "Sports Model Female Beginner",
-      "Sports Model Female Novice",
-      "Sports Model Female Open",
-      "Sports Model Female Masters 35+",
-      "Sports Model Teams",
-    ],
-    galleryImages: [
-      "/images/cat/division/5b.png",
-      "/images/cat/division/5c.png",
-      "/images/cat/division/5d.png",
-    ],
-  },
+
 ];
 
 // Animation variants for staggered animations

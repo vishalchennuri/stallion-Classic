@@ -31,9 +31,6 @@ export default function TestimonialsSection() {
     image: "/images/landing/test/3.png",
   },
 ];
-
-  
-
   return (
     <section className="py-16 md:py-24" style={{ backgroundColor: "#181818" }}>
       <div className="container mx-auto px-4 font-[CreatoDisplay]">
