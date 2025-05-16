@@ -218,9 +218,10 @@ export default function VisionariesSection() {
               regional and national finalists and is a strong advocate for
               evidence-based training and drug-free competition. His presence at
               Stallion Classic ensures that every athlete receives the guidance,
-              feedback, and mentorship needed to perform at their peak. Suresh's
-              dedication helps reinforce the event's identity as a professional,
+              feedback, and mentorship needed to perform at their peak. Suresh&apos;s
+              dedication helps reinforce the event&apos;s identity as a professional,
               athlete-focused tournament.
+
             </motion.p>
 
             <motion.div
