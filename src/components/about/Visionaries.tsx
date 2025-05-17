@@ -95,19 +95,16 @@ export default function VisionariesSection() {
               transition={{ duration: 0.5, delay: 0.7 }}
               viewport={{ once: true }}
             >
-              Abhilash is the visionary founder of Stallion Classic, India’s
-              premier natural bodybuilding and physique competition. A lifelong
-              fitness enthusiast and advocate of drug-free sports, Abhilash
-              launched Stallion Classic to create a world-class platform for
-              Indian athletes to showcase their dedication and discipline. His
-              mission is to raise the standards of competitive bodybuilding in
-              India by emphasizing fair play, professionalism, and athlete-first
-              experiences. Under his leadership, Stallion Classic has rapidly
-              grown in reputation for its international-level production
-              quality, transparent judging, and electrifying crowd energy.
-              Abhilash is committed to building a sustainable fitness ecosystem
-              that empowers young athletes, celebrates natural performance, and
-              puts Indian bodybuilding on the global map.
+              Abhilash &ndash; The Heart of the Stage.
+              <br />
+              With a deep-rooted passion for bodybuilding and athlete
+              development, Abhilash envisioned Stallion Classic as a platform
+              where raw talent meets real opportunity. Drawing from his own
+              fitness journey, he created a space where athletes could shine,
+              compete, and be celebrated &mdash; without limits. From concept to
+              execution, Abhilash has been at the frontlines &mdash; building
+              the Stallion Classic stage as a launchpad for the next generation
+              of champions.
             </motion.p>
 
             <motion.div
@@ -209,19 +206,15 @@ export default function VisionariesSection() {
               transition={{ duration: 0.5, delay: 0.8 }}
               viewport={{ once: true }}
             >
-              Suresh brings over a decade of hands-on experience in coaching and
-              athlete development to Stallion Classic. As the Head Coach, he
-              plays a crucial role in preparing athletes mentally and physically
-              for the stage. Known for his strategic coaching style and deep
-              understanding of muscle mechanics and posing, Suresh is widely
-              respected in the fitness community. He has trained numerous
-              regional and national finalists and is a strong advocate for
-              evidence-based training and drug-free competition. His presence at
-              Stallion Classic ensures that every athlete receives the guidance,
-              feedback, and mentorship needed to perform at their peak. Suresh&apos;s
-              dedication helps reinforce the event&apos;s identity as a professional,
-              athlete-focused tournament.
-
+              Suresh Goyal &ndash; The Ruler Behind the Event. Suresh Goyal
+              brought the Stallion Classic vision to life with unmatched
+              intensity and precision. From planning logistics to branding,
+              partnerships to production &mdash; Suresh ensures the program runs
+              like a well-oiled machine. His eye for excellence and hunger for
+              impact turned Stallion Classic into a nationally recognized
+              competition, rivaling platforms like ICN India. Suresh isn&rsquo;t
+              just organizing an event &mdash; he&rsquo;s building a legacy of
+              empowerment, performance, and prestige.
             </motion.p>
 
             <motion.div

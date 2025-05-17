@@ -43,15 +43,17 @@ export default function PartnersSection() {
   }, []);
 
   const partners = [
-    { name: "Lifespan", logo: "/svg/lifespan.PNG" }, 
+    { name: "Lifespan", logo: "/svg/lifespan.PNG" },
     { name: "xtan", logo: "/svg/xtan.PNG" },
     { name: "rahul raj", logo: "/svg/rahulraj.jpg" },
-    { name: "improve", logo: "/svg/improve.PNG" },
+    { name: "improve", logo: "/svg/improve.jpg" },
     { name: "interior", logo: "/svg/bnb.jpg" },
     { name: "fitandfury", logo: "/svg/fitandfury.PNG" },
     { name: "ADHURI", logo: "/svg/adhuri.jpg" },
-    { name: "maxfit1", logo: "/svg/maxfit1.png" },
+    { name: "maxfit1", logo: "/svg/maxfit.jpg" },
     { name: "ssws", logo: "/svg/ssws.png" },
+    { name: "ic", logo: "/svg/ic.jpg" },
+    { name: "Nutrinest", logo: "/svg/nutrinest.jpg" },
   ];
 
   const displayPartners = [...partners, ...partners, ...partners];
@@ -82,9 +84,9 @@ export default function PartnersSection() {
                 <Image
                   src={partner.logo || "/placeholder.svg"}
                   alt={partner.name}
-                  width={240}
-                  height={120}
-                  className="h-20 md:h-28 w-auto"
+                  width={300} // increased from 240
+                  height={160} // increased from 120
+                  className="h-24 md:h-32 w-auto" // increased from h-20 md:h-28
                 />
               </div>
             ))}
