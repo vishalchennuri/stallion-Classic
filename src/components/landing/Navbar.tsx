@@ -22,13 +22,14 @@ export default function Navbar() {
           transition={{ delay: 0.2, duration: 0.5 }}
           className="flex items-center"
         >
-          {/* <Image
-            src="/images/landing/hero/logo1.png"
+          <Image
+            src="/images/landing/hero/classic.png"
             alt="Stallion Classic Logo"
-            width={90}
-            height={90}
-            className="mr-2 sm:mr-4 sm:w-[110px] sm:h-[110px] md:w-[120px] md:h-[120px]"
-          /> */}
+            width={120}
+            height={120}
+            className="mr-2 sm:mr-4"
+            priority
+          />
         </motion.div>
       </div>
       {/* Desktop Navigation */}{" "}
