@@ -76,7 +76,7 @@ export default function VisionariesSection() {
               transition={{ duration: 0.5, delay: 0.5 }}
               viewport={{ once: true }}
             >
-              Abhilash
+              Abhilash Paravasthu
             </motion.h3>
             {/* <motion.p
               className="text-black mb-6"
@@ -187,7 +187,7 @@ export default function VisionariesSection() {
               transition={{ duration: 0.5, delay: 0.6 }}
               viewport={{ once: true }}
             >
-              SURESH
+              SURESH Bhayal
             </motion.h3>
             {/* <motion.p
               className="text-black mb-6"
@@ -206,7 +206,7 @@ export default function VisionariesSection() {
               transition={{ duration: 0.5, delay: 0.8 }}
               viewport={{ once: true }}
             >
-              Suresh Goyal &ndash; The Ruler Behind the Event. Suresh Goyal
+              Suresh Bhayal &ndash; The Ruler Behind the Event. Suresh Bhayal
               brought the Stallion Classic vision to life with unmatched
               intensity and precision. From planning logistics to branding,
               partnerships to production &mdash; Suresh ensures the program runs
