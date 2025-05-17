@@ -14,9 +14,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Stallion Classic - Bodybuilding Championship",
-  description: "The Ultimate Stage For Bodybuilding, Men's Physique & Classic Physique Champions",
+  description:
+    "The Ultimate Stage For Bodybuilding, Men's Physique & Classic Physique Champions",
   icons: {
-    icon: '/favicon.ico',
+    icon: "/favicon.ico",
   },
 };
 
@@ -28,10 +29,26 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+        />
+        <meta name="google-site-verification" content="HEeSkFQ15nmvuqgbvcWCSbwO6vm-EV6lpTXke5SVpsc" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="preload" href="/fonts/CreatoDisplay.otf" as="font" type="font/otf" crossOrigin="anonymous" />
-        <link rel="preload" href="/fonts/impact.ttf" as="font" type="font/ttf" crossOrigin="anonymous" />
+        <link
+          rel="preload"
+          href="/fonts/CreatoDisplay.otf"
+          as="font"
+          type="font/otf"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/impact.ttf"
+          as="font"
+          type="font/ttf"
+          crossOrigin="anonymous"
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
