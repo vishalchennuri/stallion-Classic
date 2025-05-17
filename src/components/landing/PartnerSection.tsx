@@ -45,13 +45,13 @@ export default function PartnersSection() {
   const partners = [
     { name: "Lifespan", logo: "/svg/lifespan.PNG" }, 
     { name: "xtan", logo: "/svg/xtan.PNG" },
-    { name: "rahul raj", logo: "/svg/rahulraj.PNG" },
+    { name: "rahul raj", logo: "/svg/rahulraj.jpg" },
     { name: "improve", logo: "/svg/improve.PNG" },
     { name: "interior", logo: "/svg/bnb.jpg" },
     { name: "fitandfury", logo: "/svg/fitandfury.PNG" },
     { name: "ADHURI", logo: "/svg/adhuri.jpg" },
     { name: "maxfit1", logo: "/svg/maxfit1.png" },
-
+    { name: "ssws", logo: "/svg/ssws.png" },
   ];
 
   const displayPartners = [...partners, ...partners, ...partners];

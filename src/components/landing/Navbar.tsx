@@ -1,54 +1,57 @@
-"use client"
-import Image from "next/image"
-import Link from "next/link"
-import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { AnimatedButton } from "../ui/AnimatedComponents"
+"use client";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { AnimatedButton } from "../ui/AnimatedComponents";
 
 export default function Navbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  return (    <motion.header 
+  return (
+    <motion.header
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
       className="absolute top-0 left-0 right-0 z-50 mx-auto px-4 sm:px-8 lg:px-16 py-4 sm:py-6 flex items-center justify-between"
     >
       <div className="flex items-center">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.5 }}
           className="flex items-center"
         >
           <Image
-            src="/images/landing/hero/logo.png"
+            src="/images/landing/hero/logo1.png"
             alt="Stallion Classic Logo"
             width={90}
             height={90}
             className="mr-2 sm:mr-4 sm:w-[110px] sm:h-[110px] md:w-[120px] md:h-[120px]"
           />
         </motion.div>
-      </div>{/* Desktop Navigation */}      <div className="flex-1 flex justify-center">
-        <motion.nav 
+      </div>
+      {/* Desktop Navigation */}{" "}
+      <div className="flex-1 flex justify-center">
+        <motion.nav
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.5 }}
           className="hidden md:flex items-center justify-center space-x-6 lg:space-x-12 font-[CreatoDisplay] w-full"
         >
-          {['Home', 'About', 'Categories', 'Events'].map((item, index) => (
+          {["Home", "About", "Categories", "Events"].map((item, index) => (
             <motion.div
               key={item}
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ 
-                delay: 0.3 + (index * 0.1), 
-                duration: 0.5 
+              transition={{
+                delay: 0.3 + index * 0.1,
+                duration: 0.5,
               }}
               whileHover={{ y: -5 }}
             >
               <Link
-                href={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
+                href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
                 className="text-white hover:text-[#dc4a26] transition-colors text-sm lg:text-base"
               >
                 {item}
@@ -56,7 +59,8 @@ export default function Navbar() {
             </motion.div>
           ))}
         </motion.nav>
-      </div>{/* Mobile Menu Button */}
+      </div>
+      {/* Mobile Menu Button */}
       <motion.div className="md:hidden flex justify-end z-50">
         <motion.button
           whileHover={{ scale: 1.05 }}
@@ -82,7 +86,6 @@ export default function Navbar() {
           ></span>
         </motion.button>
       </motion.div>
-
       {/* Mobile Navigation Overlay */}
       <AnimatePresence>
         {mobileMenuOpen && (
@@ -94,37 +97,39 @@ export default function Navbar() {
             className="fixed inset-0 bg-black bg-opacity-90 z-40 md:hidden"
           >
             <div className="flex flex-col items-center justify-center h-full">
-              <motion.nav 
+              <motion.nav
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1, transition: { delay: 0.2 } }}
                 className="flex flex-col items-center space-y-8 font-[CreatoDisplay]"
               >
-                {['Home', 'About', 'Categories', 'Events'].map((item, index) => (
-                  <motion.div
-                    key={item}
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ 
-                      opacity: 1, 
-                      y: 0,
-                      transition: { delay: 0.2 + (index * 0.1) } 
-                    }}
-                    whileHover={{ scale: 1.05, x: 5 }}
-                  >
-                    <Link
-                      href={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
-                      className="text-white hover:text-[#dc4a26] transition-colors text-2xl"
-                      onClick={() => setMobileMenuOpen(false)}
+                {["Home", "About", "Categories", "Events"].map(
+                  (item, index) => (
+                    <motion.div
+                      key={item}
+                      initial={{ opacity: 0, y: 50 }}
+                      animate={{
+                        opacity: 1,
+                        y: 0,
+                        transition: { delay: 0.2 + index * 0.1 },
+                      }}
+                      whileHover={{ scale: 1.05, x: 5 }}
                     >
-                      {item}
-                    </Link>
-                  </motion.div>
-                ))}
+                      <Link
+                        href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+                        className="text-white hover:text-[#dc4a26] transition-colors text-2xl"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {item}
+                      </Link>
+                    </motion.div>
+                  )
+                )}
                 <motion.div
                   initial={{ opacity: 0, y: 50 }}
-                  animate={{ 
-                    opacity: 1, 
+                  animate={{
+                    opacity: 1,
                     y: 0,
-                    transition: { delay: 0.6 } 
+                    transition: { delay: 0.6 },
                   }}
                 >
                   <AnimatedButton>
@@ -142,7 +147,6 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-
       {/* Registration Button - Desktop */}
       <motion.div
         initial={{ opacity: 0, x: 20 }}
@@ -159,5 +163,5 @@ export default function Navbar() {
         </AnimatedButton>
       </motion.div>
     </motion.header>
-  )
+  );
 }
