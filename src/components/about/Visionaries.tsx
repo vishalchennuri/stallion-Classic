@@ -76,7 +76,7 @@ export default function VisionariesSection() {
               transition={{ duration: 0.5, delay: 0.5 }}
               viewport={{ once: true }}
             >
-              Abhilash Paravasthu
+              Paravasthu Abhilash
             </motion.h3>
             {/* <motion.p
               className="text-black mb-6"
