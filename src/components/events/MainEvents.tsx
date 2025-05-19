@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image"
 import Link from "next/link"
 import { Play } from "lucide-react"
 import { motion } from "framer-motion"
@@ -16,49 +15,30 @@ export default function MainEventSection() {
         </AnimatedSection>
 
         <div className="flex flex-col md:flex-row gap-8 md:gap-16 items-center">
-          {/* Video/Image on the left */}
+          {/* YouTube Video on the left */}
           <AnimatedSection 
-            className="w-full md:w-1/2"
+            className="w-full md:w-3/5"
             animation="slideInLeft"
             delay={0.2}
           >
-            <div className="relative w-full aspect-[633/580] max-w-[633px] overflow-hidden rounded-md mx-auto">
-              <Image
-                src="/images/events/main/1.png"
-                alt="Bodybuilding competition"
-                fill
-                className="object-cover"
-              />
-
-              {/* Play Button Overlay */}
-              <motion.div 
-                className="absolute inset-0 flex items-center justify-center"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ delay: 0.5, duration: 0.5 }}
-                viewport={{ once: true }}
-              >
-                <motion.button
-                  className="w-12 h-12 sm:w-16 sm:h-16 bg-white bg-opacity-30 rounded-full flex items-center justify-center hover:bg-opacity-40 transition-all duration-300"
-                  aria-label="Play video"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <motion.div 
-                    className="w-8 h-8 sm:w-12 sm:h-12 bg-[#dc4a26] rounded-full flex items-center justify-center"
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ delay: 0.8, type: "spring", stiffness: 200 }}
-                  >
-                    <Play className="h-4 w-4 sm:h-6 sm:w-6 text-white fill-white ml-0.5 sm:ml-1" />
-                  </motion.div>
-                </motion.button>
-              </motion.div>
+            <div className="relative w-full aspect-video max-w-[800px] overflow-hidden rounded-md mx-auto">
+              {/* YouTube Video Embed */}
+              <iframe 
+                width="100%" 
+                height="100%" 
+                src="https://www.youtube.com/embed/B5qSKp4cBik?si=o7mnEs69E5JnLZoC" 
+                title="Bodybuilding competition" 
+                frameBorder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerPolicy="strict-origin-when-cross-origin" 
+                allowFullScreen
+                className="absolute top-0 left-0 w-full h-full"
+              ></iframe>
             </div>
           </AnimatedSection>
 
           {/* Content on the right */}
-          <div className="w-full md:w-1/2">
+          <div className="w-full md:w-2/5">
             <AnimatedSection className="mb-6 sm:mb-10 md:mb-14" animation="slideInRight" delay={0.3}>
               <h3 className="text-2xl sm:text-3xl md:text-4xl font-[impact] text-white">WHY IT MATTERS</h3>
             </AnimatedSection>
