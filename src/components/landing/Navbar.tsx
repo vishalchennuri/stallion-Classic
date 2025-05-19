@@ -218,7 +218,7 @@ export default function Navbar() {
                   }}
                   className="flex justify-center space-x-6 mt-8"
                 >
-                  {socialLinks.map((social, index) => (
+                  {socialLinks.map((social) => (
                     <motion.a
                       key={social.name}
                       href={social.url}
