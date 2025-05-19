@@ -1,8 +1,6 @@
 "use client";
 
 import Link from "next/link"
-import { Play } from "lucide-react"
-import { motion } from "framer-motion"
 import AnimatedSection, { StaggerContainer, StaggerItem, AnimatedButton } from "../ui/AnimatedComponents"
 
 export default function MainEventSection() {
