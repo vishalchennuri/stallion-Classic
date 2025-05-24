@@ -2,46 +2,62 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useState } from "react";
 import AnimatedSection, {
   StaggerContainer,
   StaggerItem,
 } from "../ui/AnimatedComponents";
+type Champion = {
+  id: string;
+  name: string;
+  division: string;
+  quote: string;
+  image: string;
+  secondaryImage: string;
+};
 
 export default function ChampionsSection() {
-  const champions = [
+  const [activeChampion, setActiveChampion] = useState<string | null>(null);
+  
+  const champions: Champion[]= [
     {
-      id: "john-rivera",
-      name: "JOHN RIVERA",
-      division: "Division - Bodybuilding Super Heavyweight",
-      quote:
-        '"Stallion Classic Tested Every Ounce Of My Discipline. The Ultimate Proving Ground"',
-      image: "/images/landing/champ/1.png",
+      id: "ajay-vishal",
+      name: "AJAY VISHAL",
+      division: "Division - Bodybuilding",
+      quote: '"Stallion Classic Tested Every Ounce Of My Discipline. The Ultimate Proving Ground"',
+      image: "/images/winners/ayay.JPG",
+      secondaryImage: "/images/winners/srbdodywinner.JPG"
     },
     {
-      id: "marcus-cole",
-      name: "Marcus Cole",
-      division: "Division: Men's Physique (Open)",
+      id: "taha-khan",
+      name: "TAHA KHAN",
+      division: "Division: Classic Physique",
       quote: '"That Moment They Called My Name? Pure Electricity"',
-      image: "/images/landing/champ/2.png",
+      image: "/images/winners/classphyimg.png",
+      secondaryImage: "/images/winners/clasicphycis.JPG"
     },
     {
-      id: "derrick",
-      name: "Derrick",
+      id: "taha-khan-sr",
+      name: "TAHA KHAN",
       division: "Division - Men's Physique",
-      quote:
-        '"Stallion Classic Tested Every Ounce Of My Discipline. The Ultimate Proving Ground"',
-      image: "/images/landing/champ/3.png",
+      quote: '"Stallion Classic Tested Every Ounce Of My Discipline. The Ultimate Proving Ground"',
+      image: "/images/winners/sr mens phyic.JPG",
+      secondaryImage: "/images/winners/mensphycis.JPG"
     },
   ];
+
+  const handleToggleImage = (id: string): void => {
+    setActiveChampion(activeChampion === id ? null : id);
+  };
 
   return (
     <section className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
         <AnimatedSection className="text-center mb-12">
-          <h2 className="text-4xl md:text-4xl  text-black mb-4 font-[impact] ">
-            MEET THE 2025 CHAMPIONS
+          <h2 className="text-4xl md:text-4xl text-black mb-4 font-[impact]">
+            MEET THE 2024 CHAMPIONS
           </h2>
-          <p className="text-xl md:text-2xl text-gray-800 font-[CreatoDisplay] ">
+          <p className="text-xl md:text-2xl text-gray-800 font-[CreatoDisplay]">
             The Legends Of Stallion Classic - Their Legacy Started Here
           </p>
         </AnimatedSection>
@@ -53,20 +69,54 @@ export default function ChampionsSection() {
               index={index}
               className="relative w-full sm:w-[350px] md:w-[400px]"
             >
-              {/* Orange background div - clearly visible and offset */}
-              <div className="absolute top-3 left-3 w-full h-full bg-[#dc4a26] rounded-lg z-0"></div>{" "}
+              {/* Orange background div */}
+              <div className="absolute top-3 left-3 w-full h-full bg-[#dc4a26] rounded-lg z-0"></div>
+              
               {/* Main card */}
               <div className="relative z-10 rounded-lg overflow-hidden shadow-lg bg-white">
-                <div className="relative aspect-[3/4]">
-                  <Image
-                    src={champion.image || "/placeholder.svg"}
-                    alt={champion.name}
-                    fill
-                    className="object-cover"
-                  />
+                <div 
+                  className="relative aspect-[3/4] group cursor-pointer"
+                  onClick={() => handleToggleImage(champion.id)}
+                  onMouseEnter={() => setActiveChampion(champion.id)}
+                  onMouseLeave={() => setActiveChampion(null)}
+                >
+                  {/* Primary Image */}
+                  <motion.div
+                    className="absolute inset-0"
+                    animate={{
+                      opacity: activeChampion === champion.id ? 0 : 1,
+                      zIndex: activeChampion === champion.id ? 0 : 10
+                    }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Image
+                      src={champion.image || "/placeholder.svg"}
+                      alt={champion.name}
+                      fill
+                      className="object-cover"
+                    />
+                  </motion.div>
+                  
+                  {/* Secondary Image */}
+                  <motion.div
+                    className="absolute inset-0"
+                    animate={{
+                      opacity: activeChampion === champion.id ? 1 : 0,
+                      zIndex: activeChampion === champion.id ? 10 : 0
+                    }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Image
+                      src={champion.secondaryImage || "/placeholder.svg"}
+                      alt={`${champion.name} - Competition`}
+                      fill
+                      className="object-cover"
+                    />
+                  </motion.div>
+                  
                   {/* Medal icon with bounce animation */}
                   <motion.div
-                    className="absolute top-4 right-4"
+                    className="absolute top-4 right-4 z-20"
                     initial={{ y: -20, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
@@ -88,21 +138,60 @@ export default function ChampionsSection() {
                       className="object-contain"
                     />
                   </motion.div>
-                  {/* Content overlay with slide up animation */}{" "}
+                  
+                  {/* Enhanced glassmorphism overlay */}
                   <motion.div
-                    className="absolute bottom-0 left-0 right-0 p-6 text-white"
-                    initial={{ y: 100, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
+                    className="absolute inset-0 z-10 pointer-events-none"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.5, delay: 0.7 + index * 0.1 }}
                     viewport={{ once: true }}
                   >
-                    <h3 className="text-2xl md:text-3xl font-bold mb-2">
-                      {champion.name}
-                    </h3>
-                    <p className="text-sm mb-3 text-gray-300">
-                      {champion.division}
-                    </p>
-                    <p className="text-sm italic">{champion.quote}</p>
+                    {/* Gradient overlay that fades from bottom to top */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                    
+                    {/* Frosted glass effect */}
+                    <div 
+                      className="absolute bottom-0 left-0 right-0 h-1/3"
+                      style={{
+                        background: 'rgba(255, 255, 255, 0.05)',
+                        backdropFilter: 'blur(12px) saturate(1.2)',
+                        WebkitBackdropFilter: 'blur(12px) saturate(1.2)',
+                        maskImage: 'linear-gradient(to top, black 0%, transparent 100%)',
+                        WebkitMaskImage: 'linear-gradient(to top, black 0%, transparent 100%)',
+                      }}
+                    />
+                    
+                    {/* Subtle light reflection */}
+                    <div 
+                      className="absolute bottom-0 left-0 right-0 h-2/3"
+                      style={{
+                        background: 'linear-gradient(to top, rgba(255,255,255,0.1) 0%, transparent 100%)',
+                        maskImage: 'linear-gradient(to top, black 0%, transparent 70%)',
+                        WebkitMaskImage: 'linear-gradient(to top, black 0%, transparent 70%)',
+                      }}
+                    />
+                  </motion.div>
+                  
+                  {/* Content container */}
+                  <motion.div
+                    className="absolute bottom-0 left-0 right-0 z-20 p-6"
+                    initial={{ y: 50, opacity: 0 }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.9 + index * 0.1 }}
+                    viewport={{ once: true }}
+                  >
+                    <div className="space-y-3">
+                      <h3 className="text-2xl md:text-3xl font-bold text-white drop-shadow-lg">
+                        {champion.name}
+                      </h3>
+                      <p className="text-sm text-gray-200 drop-shadow-md">
+                        {champion.division}
+                      </p>
+                      <p className="text-sm italic text-white/90 drop-shadow-md">
+                        {champion.quote}
+                      </p>
+                    </div>
                   </motion.div>
                 </div>
               </div>

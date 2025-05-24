@@ -26,6 +26,8 @@ export default function Navbar() {
     { name: "About", path: "/about" },
     { name: "Categories", path: "/categories" },
     { name: "Events", path: "/events" },
+    { name: "Rules", path: "/rules" },
+   
   ];
 
   const socialLinks = [

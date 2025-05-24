@@ -173,7 +173,7 @@ export default function Footer() {
             © 2025 Stallion Classic - All Right Reserved
           </p>
           <Link
-            href="/privacy"
+            href="/rules"
             className="text-gray-400 text-sm hover:text-white transition-colors"
           >
             Privacy Policy
