@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Stallion Classic India | National Bodybuilding Championship",
+  title: "Stallion Classic - India's National Bodybuilding Championship",
   description:
     "Stallion Classic - India's premier national bodybuilding championship featuring bodybuilding, men's physique & classic physique categories. Join the ultimate competition for fitness enthusiasts.",
   keywords: "Stallion Classic, bodybuilding championship, India bodybuilding, men's physique competition, classic physique, national bodybuilding contest, fitness competition India",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Stallion Classic | India's National Bodybuilding Championship",
-    description: "India's premier bodybuilding championship featuring top athletes competing in bodybuilding, men's physique & classic physique categories.",
+    description: "Stallion classic India's premier bodybuilding championship featuring top athletes competing in bodybuilding, men's physique & classic physique categories.",
     url: "https://stallionclassic.com",
     siteName: "Stallion Classic",
     images: [
