@@ -23,11 +23,12 @@ export default function HeroSection() {  return (    <main className="relative m
             ease: "easeInOut"
           }}
         >
+
           <Image
-            src="/images/landing/hero/hero.png"
+            src="/images/landing/hero/hero.jpg"
             alt="Bodybuilding background"
             fill
-            className="object-cover brightness-50"
+            className="object-cover brightness-30"
             priority
             quality={90}
           />

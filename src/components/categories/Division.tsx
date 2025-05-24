@@ -23,33 +23,7 @@ const HoverCard = ({
 };
 
 const divisions = [
-  {
-    id: "bodybuilding",
-    title: "BODYBUILDING",
-    subtitle: "The Ultimate Test Of Size, Symmetry, And Stage Presence",
-    image: "/images/cat/division/1a.png",
-    keyFacts: [
-      "Judged 60% Muscularity, 30% Symmetry, 10% Conditioning",
-      "No Weight Limits - Pure Mass Rules",
-      "8 Mandatory Poses (Front Lat Spread To Most Muscular)",
-    ],
-    categories: [
-      "Bodybuilding 55 to 60 KG",
-      "Bodybuilding 60 to 65 KG",
-      "Bodybuilding 65 to 70 KG",
-      "Bodybuilding 70 to 75 KG",
-      "Bodybuilding 75 to 80 KG",
-      "Bodybuilding 80 to 85 KG",
-      "Bodybuilding 85 to 90 KG",
-      "Bodybuilding 90 to 95 KG",
-      "Bodybuilding 95+ KG",
-    ],
-    galleryImages: [
-      "/images/cat/division/1b.png",
-      "/images/cat/division/1c.png",
-      "/images/cat/division/1d.png",
-    ],
-  },
+
   {
     id: "mens-physique",
     title: "MENS PHYSIQUE",
@@ -72,9 +46,10 @@ const divisions = [
       "Men's Physique Masters 40+",
     ],
     galleryImages: [
-      "/images/cat/division/2b.png",
-      "/images/cat/division/2c.png",
-      "/images/cat/division/2d.png",
+            "/images/cat/mens physics/img3.JPG",
+
+      "/images/cat/mens physics/img1.JPG",
+      "/images/cat/mens physics/img2.JPG",
     ],
   },
   {
@@ -99,9 +74,36 @@ const divisions = [
       "Classic Physique Masters 40+",
     ],
     galleryImages: [
-      "/images/cat/division/3b.png",
-      "/images/cat/division/3c.png",
-      "/images/cat/division/3d.png",
+      "/images/cat/classicphysic/SRP04334 (1).JPG",
+      "/images/cat/classicphysic/img1.JPG",
+      "/images/cat/classicphysic/classiccatgory.JPG",
+    ],
+  },
+  {
+    id: "bodybuilding",
+    title: "BODYBUILDING",
+    subtitle: "The Ultimate Test Of Size, Symmetry, And Stage Presence",
+    image: "/images/cat/division/1a.png",
+    keyFacts: [
+      "Judged 60% Muscularity, 30% Symmetry, 10% Conditioning",
+      "No Weight Limits - Pure Mass Rules",
+      "8 Mandatory Poses (Front Lat Spread To Most Muscular)",
+    ],
+    categories: [
+      "Bodybuilding 55 to 60 KG",
+      "Bodybuilding 60 to 65 KG",
+      "Bodybuilding 65 to 70 KG",
+      "Bodybuilding 70 to 75 KG",
+      "Bodybuilding 75 to 80 KG",
+      "Bodybuilding 80 to 85 KG",
+      "Bodybuilding 85 to 90 KG",
+      "Bodybuilding 90 to 95 KG",
+      "Bodybuilding 95+ KG",
+    ],
+    galleryImages: [
+      "/images/cat/body building/img2.JPG",
+      "/images/cat/body building/image1.JPG",
+      "/images/cat/body building/bodybuildingcat1.JPG",
     ],
   },
   {
@@ -126,8 +128,8 @@ const divisions = [
       "Fitness Model Masters 35+",
     ],
     galleryImages: [
-      "/images/cat/division/4b.png",
-      "/images/cat/division/4c.png",
+      "/images/cat/denim jeans/img1.JPG",
+      "/images/cat/denim jeans/img2.JPG",
       "/images/cat/division/4d.png",
     ],
   },
