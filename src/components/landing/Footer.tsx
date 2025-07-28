@@ -105,11 +105,11 @@ export default function Footer() {
             <h3 className="text-xl sm:text-2xl mb-4 font-[impact]">CONTACT</h3>
             <address className="not-italic text-gray-300 mb-4">
               <p>
-                3rd Floor, above Sri Vidya Junior College, Chinthal,Hyderabad
+                Plot No. 119/120, Kukatpally Rd, above More Super Market,
+                Prakasham Panthulu Nagar, Rodamestri Nagar, Hyderabad{" "}
               </p>
-              <p>Telangana 500037</p>
+              <p>Telangana 500055</p>
             </address>
-            <p className="text-gray-300 mb-2">+91 8885110136</p>
             <p className="text-gray-300 mb-4">info@stallionclassic.com</p>
 
             {/* Social Media */}
