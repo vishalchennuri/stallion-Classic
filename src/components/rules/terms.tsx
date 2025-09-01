@@ -85,6 +85,7 @@ export default function TermsConditionsSection() {
     {
       icon: <AlertCircle className="h-6 w-6 sm:h-7 sm:w-7 text-[#dc4a26]" />,
       title: "Legal & Compliance",
+
       content: [
         "These terms are governed by local and national laws where the event takes place.",
         "Any disputes will be resolved through binding arbitration.",
@@ -158,8 +159,8 @@ export default function TermsConditionsSection() {
                 If you have any questions regarding these terms and conditions, please contact our legal department.
               </p>
               <div className="space-y-2 text-sm sm:text-base">
-                <p><strong>Email:</strong> legal@ifbbpro-events.com</p>
-                <p><strong>Phone:</strong> +91 (0) 123-456-7890</p>
+                <p><strong>Email:</strong>info@stallionclassic.com</p>
+                <p><strong>Phone:</strong> +91 7995181677</p>
                 <p><strong>Business Hours:</strong> Monday - Friday, 9:00 AM - 6:00 PM IST</p>
               </div>
             </div>

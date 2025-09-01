@@ -48,6 +48,14 @@ export default function Navbar() {
     },
   ];
 
+  // WhatsApp contact function
+  const handleContactUs = () => {
+    const phoneNumber = "917995181677";
+    const message = "Hi! I have doubts regarding registration. Could you please help me?";
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
   return (
     <motion.header
       initial={{ y: -80, opacity: 0 }}
@@ -189,7 +197,7 @@ export default function Navbar() {
                   );
                 })}
                 
-                {/* Registration Button - Mobile */}
+                {/* Contact Us Button - Mobile */}
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   animate={{
@@ -200,13 +208,15 @@ export default function Navbar() {
                   className="w-full mt-4"
                 >
                   <AnimatedButton>
-                    <Link
-                      href="/registration"
+                    <button
+                      onClick={() => {
+                        handleContactUs();
+                        setMobileMenuOpen(false);
+                      }}
                       className="bg-[#dc4a26] text-white px-8 py-3 text-lg font-bold tracking-wider hover:bg-opacity-90 transition-colors block text-center w-full"
-                      onClick={() => setMobileMenuOpen(false)}
                     >
-                      REGISTRATION
-                    </Link>
+                      CONTACT US
+                    </button>
                   </AnimatedButton>
                 </motion.div>
                 
@@ -251,19 +261,19 @@ export default function Navbar() {
         )}
       </AnimatePresence>
       
-      {/* Registration Button - Desktop */}
+      {/* Contact Us Button - Desktop */}
       <motion.div
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.5, duration: 0.4 }}
       >
         <AnimatedButton>
-          <Link
-            href="/registration"
+          <button
+            onClick={handleContactUs}
             className="hidden md:block bg-[#dc4a26] text-white px-4 sm:px-5 py-1 sm:py-1.5 text-xs sm:text-sm font-bold tracking-wider hover:bg-opacity-90 transition-colors font-[CreatoDisplay]"
           >
-            REGISTRATION
-          </Link>
+            CONTACT US
+          </button>
         </AnimatedButton>
       </motion.div>
     </motion.header>

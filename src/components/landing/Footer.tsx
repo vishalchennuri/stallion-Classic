@@ -10,6 +10,19 @@ import AnimatedSection, {
 } from "../ui/AnimatedComponents";
 
 export default function Footer() {
+  // WhatsApp contact function
+  const handleContactUs = () => {
+    const phoneNumber = "917995181677";
+    const message = "Hi! I have doubts regarding registration. Could you please help me?";
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
+  // Phone call function
+  const handlePhoneCall = () => {
+    window.open("tel:+917995181677", '_self');
+  };
+
   return (
     <footer className="bg-[#181818] text-white pt-8 sm:pt-12 md:pt-16 pb-6 font-[CreatoDisplay] w-full overflow-hidden">
       <div className="px-4 sm:px-6 md:px-10 mx-auto">
@@ -59,12 +72,12 @@ export default function Footer() {
                     </Link>
                   </li>
                   <li>
-                    <Link
-                      href="/contact"
-                      className="text-gray-300 hover:text-white transition-colors"
+                    <button
+                      onClick={handleContactUs}
+                      className="text-gray-300 hover:text-white transition-colors cursor-pointer"
                     >
                       Contact
-                    </Link>
+                    </button>
                   </li>
                 </ul>
               </StaggerItem>
@@ -110,6 +123,18 @@ export default function Footer() {
               </p>
               <p>Telangana 500055</p>
             </address>
+            
+            {/* Phone Number - Clickable */}
+            <p className="text-gray-300 mb-2">
+              <button
+                onClick={handlePhoneCall}
+                className="hover:text-[#dc4a26] transition-colors cursor-pointer underline"
+              >
+                +91 7995181677
+              </button>
+            </p>
+            
+            {/* Email */}
             <p className="text-gray-300 mb-4">info@stallionclassic.com</p>
 
             {/* Social Media */}
