@@ -24,7 +24,7 @@ export default function ChampionsSection() {
       id: "ajay-vishal",
       name: "AJAY VISHAL",
       division: "Division - Bodybuilding",
-      quote: '"Stallion Classic Tested Every Ounce Of My Discipline. The Ultimate Proving Ground"',
+      quote: '"Winning The Stallion Classic Was A Dream Come True. The Journey To Pro Status Starts Here"',
       image: "/images/winners/ayay.JPG",
       secondaryImage: "/images/winners/srbdodywinner.JPG"
     },

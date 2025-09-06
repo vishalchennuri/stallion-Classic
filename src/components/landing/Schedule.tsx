@@ -8,9 +8,9 @@ export default function ScheduleSection() {
     {
       id: 1,
       day: "12",
-      month: "May",
+      month: "Deecember",
       time: "09:00 am - 05:00 pm",
-      location: "Hyderabad",
+      location: "Satya Gouri Convention , Sri Balaji Layout , Hal Colony, Gajularamaram Hyderabad",
       title: "Events - Preliminary Judging",
       highlights:
         "Highlights - Witness 20+ athletes vie for IFBB Pro status in the most rigorous judging session of the year.",
@@ -18,9 +18,9 @@ export default function ScheduleSection() {
     {
       id: 2,
       day: "13",
-      month: "May",
+      month: "Deecember",
       time: "09:00 am - 05:00 pm",
-      location: "Hyderabad",
+      location: "Satya Gouri Convention , Sri Balaji Layout , Hal Colony, Gajularamaram Hyderabad",
       title: "Events - Preliminary Judging",
       highlights:
         "Highlights - Witness 20+ athletes vie for IFBB Pro status in the most rigorous judging session of the year.",
@@ -28,9 +28,9 @@ export default function ScheduleSection() {
     {
       id: 3,
       day: "14",
-      month: "May",
+      month: "Deecember",
       time: "09:00 am - 05:00 pm",
-      location: "Hyderabad",
+      location: "Satya Gouri Convention , Sri Balaji Layout , Hal Colony, Gajularamaram Hyderabad",
       title: "Events - Preliminary Judging",
       highlights:
         "Highlights - Witness 20+ athletes vie for IFBB Pro status in the most rigorous judging session of the year.",
