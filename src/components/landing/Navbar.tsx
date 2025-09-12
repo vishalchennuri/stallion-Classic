@@ -27,6 +27,7 @@ export default function Navbar() {
     { name: "Categories", path: "/categories" },
     { name: "Events", path: "/events" },
     { name: "Rules", path: "/rules" },
+    { name: "register", path: "/register" },
    
   ];
 
