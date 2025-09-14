@@ -4,9 +4,7 @@ import PageTransition from "@/components/ui/PageTransition";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
 import ScrollToTopButton from "@/components/ui/ScrollToTopButton";
-import RegisterHero from "@/components/registration/registerhero";
 import CategoriesGrid from "@/components/registration/categoriesgrid";
-import { features } from "process";
 
 export default function Register() {
   return (

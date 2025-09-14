@@ -1,10 +1,10 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, Timestamp } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
- apiKey: "AIzaSyB6xSNB6LNRneOzkUcpfLIY5wmHwtd-khI",
+  apiKey: "AIzaSyB6xSNB6LNRneOzkUcpfLIY5wmHwtd-khI",
   authDomain: "stallion-classic.firebaseapp.com",
   projectId: "stallion-classic",
   storageBucket: "stallion-classic.firebasestorage.app",
@@ -42,7 +42,7 @@ export interface RegistrationData {
   emergencyRelation: string;
   category: string;
   categoryTitle: string;
-  registrationDate: any;
+  registrationDate: Timestamp | Date | string;
   status: 'pending' | 'approved' | 'rejected';
   paymentStatus: 'pending' | 'paid' | 'failed';
   agreeTerms: boolean;
