@@ -136,7 +136,7 @@ const PopupNotification = () => {
               </div>
 
               <Link
-                href="/events"
+                href="/register"
                 className="inline-block text-white font-bold py-2 sm:py-3 px-6 sm:px-8 rounded-md hover:opacity-90 transition-all duration-300 uppercase tracking-wider text-sm sm:text-base"
                 style={{ backgroundColor: "#dc4a26" }}
               >
