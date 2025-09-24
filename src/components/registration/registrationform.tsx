@@ -51,7 +51,7 @@ const StyledRegistrationForm = ({ category }: RegistrationFormProps) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-  
+
   const [formData, setFormData] = useState<FormData>({
     fullName: '',
     phoneNumber: '',
@@ -124,7 +124,7 @@ const StyledRegistrationForm = ({ category }: RegistrationFormProps) => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
-    
+
     if (type === 'checkbox') {
       const checked = (e.target as HTMLInputElement).checked;
       setFormData(prev => ({
@@ -152,30 +152,43 @@ const StyledRegistrationForm = ({ category }: RegistrationFormProps) => {
         status: 'pending',
         paymentStatus: 'pending'
       });
+      console.log(formData)
 
-     setSuccess(true);
-      
-      // Prepare WhatsApp message
-      const whatsappNumber = "917995181677"; // Remove spaces and add country code
-      const message = `Hello! I have successfully registered for Stallion Classic 2025.
+      setSuccess(true);
+      const message = `👋 Hello ${formData.fullName},
 
-My Details:
-• Name: ${formData.fullName}
+✅ Your registration for *Stallion Classic 2025* has been received successfully!
+
+📝 *Registration Details:*
 • Phone: ${formData.phoneNumber}
 • Category: ${currentCategory.title}
 • Sub-Category: ${formData.subcategory}
-Could you please guide me on how to complete the payment process?
-Thank you!`;
+
+*Next Step:* Please complete the payment to confirm your participation.
+
+Thank you for choosing Stallion Classic — we look forward to seeing you at the event!`;
 
       const encodedMessage = encodeURIComponent(message);
-      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-      
-      setTimeout(() => {
-        // Open WhatsApp in new tab
-        window.open(whatsappUrl, '_blank');
-        // Redirect to success page
-        router.push('/register?success=true');
-      }, 3000);
+      const cleanedNumber = formData.phoneNumber.replace(/\D/g, "");
+      const last10Digits = cleanedNumber.slice(-10);
+      const formattedNumber = `91${last10Digits}`;
+
+      const res = await fetch("/api/send-whatsapp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          to: formattedNumber,
+          message,
+        }),
+      });
+
+      if (!res.ok) {
+        console.error("WhatsApp send failed", await res.json());
+        alert("Registration saved, but failed to send WhatsApp message.");
+      }
+      router.push('/register?success=true');
+
+
     } catch (error) {
       console.error('Error submitting registration:', error);
       alert('Error submitting registration. Please try again.');
@@ -190,7 +203,7 @@ Thank you!`;
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-3xl sm:text-4xl font-[impact] text-[#282828] mb-4">CATEGORY NOT FOUND</h1>
           <AnimatedButton>
-            <button 
+            <button
               onClick={() => router.push('/register')}
               className="bg-[#dc4a26] hover:bg-opacity-90 text-white px-8 py-3 font-bold font-[CreatoDisplay] tracking-wider transition-colors"
             >
@@ -210,7 +223,7 @@ Thank you!`;
             <div className="text-5xl sm:text-6xl mb-4">🎉</div>
             <h2 className="text-2xl sm:text-3xl font-[impact] text-[#282828] mb-4">REGISTRATION SUCCESSFUL!</h2>
             <p className="text-gray-700 font-[CreatoDisplay] mb-6">
-              Thank you for registering for Stallion Classic 2025. 
+              Thank you for registering for Stallion Classic 2025.
               We&aposll contact you soon with further details.
             </p>
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#dc4a26] mx-auto"></div>
@@ -243,7 +256,7 @@ Thank you!`;
                 <span className="text-[#dc4a26] mr-3">👤</span>
                 PERSONAL INFORMATION
               </h3>
-              
+
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-gray-700 mb-2 font-medium font-[CreatoDisplay]">Full Name *</label>
@@ -335,7 +348,7 @@ Thank you!`;
                 <span className="text-[#dc4a26] mr-3">📏</span>
                 PHYSICAL INFORMATION
               </h3>
-              
+
               <div className="grid md:grid-cols-3 gap-6">
                 <div>
                   <label className="block text-gray-700 mb-2 font-medium font-[CreatoDisplay]">Height (cm) *</label>
@@ -366,7 +379,7 @@ Thank you!`;
                 <div>
                   <label className="block text-gray-700 mb-2 font-medium font-[CreatoDisplay]">Competition Category *</label>
                   <select
-                  title="Select Sub-Category"
+                    title="Select Sub-Category"
                     name="subcategory"
                     value={formData.subcategory}
                     onChange={handleInputChange}
@@ -382,7 +395,7 @@ Thank you!`;
               </div>
             </div>
 
-           
+
 
             {/* Address Information */}
             <div>
@@ -391,7 +404,7 @@ Thank you!`;
                 <span className="text-[#dc4a26] mr-3">📍</span>
                 ADDRESS INFORMATION
               </h3>
-              
+
               <div className="space-y-6">
                 <div>
                   <label className="block text-gray-700 mb-2 font-medium font-[CreatoDisplay]">Full Address *</label>
@@ -456,7 +469,7 @@ Thank you!`;
                 <span className="text-[#dc4a26] mr-3">🚨</span>
                 EMERGENCY CONTACT
               </h3>
-              
+
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-gray-700 mb-2 font-medium font-[CreatoDisplay]">Emergency Contact Number *</label>
@@ -474,7 +487,7 @@ Thank you!`;
                 <div>
                   <label className="block text-gray-700 mb-2 font-medium font-[CreatoDisplay]">Relation *</label>
                   <select
-                  title="Select Relation"
+                    title="Select Relation"
                     name="emergencyRelation"
                     value={formData.emergencyRelation}
                     onChange={handleInputChange}
@@ -492,7 +505,7 @@ Thank you!`;
               </div>
             </div>
 
-           
+
             {/* Terms and Conditions */}
             <div>
               <div className="border-t border-gray-200 my-8"></div>
@@ -508,7 +521,7 @@ Thank you!`;
                   className="mt-1 w-5 h-5 text-[#dc4a26] bg-white border border-gray-300 rounded focus:ring-[#dc4a26] focus:ring-2"
                 />
                 <label htmlFor="agreeTerms" className="text-gray-700 text-sm font-[CreatoDisplay]">
-                  I agree to the <span className="text-[#dc4a26] hover:text-[#b83920] cursor-pointer">terms and conditions</span> and 
+                  I agree to the <span className="text-[#dc4a26] hover:text-[#b83920] cursor-pointer">terms and conditions</span> and
                   confirm that all information provided is accurate. I understand that false information may lead to disqualification. *
                 </label>
               </div>
@@ -520,11 +533,10 @@ Thank you!`;
                 <button
                   type="submit"
                   disabled={loading || !formData.agreeTerms}
-                  className={`w-full py-4 px-6 font-bold text-white text-lg font-[CreatoDisplay] tracking-wider transition-all duration-300 ${
-                    loading || !formData.agreeTerms
-                      ? 'bg-gray-400 cursor-not-allowed'
-                      : 'bg-[#dc4a26] hover:bg-opacity-90'
-                  }`}
+                  className={`w-full py-4 px-6 font-bold text-white text-lg font-[CreatoDisplay] tracking-wider transition-all duration-300 ${loading || !formData.agreeTerms
+                    ? 'bg-gray-400 cursor-not-allowed'
+                    : 'bg-[#dc4a26] hover:bg-opacity-90'
+                    }`}
                 >
                   {loading ? (
                     <div className="flex items-center justify-center space-x-2">
