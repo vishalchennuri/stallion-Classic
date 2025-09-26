@@ -168,7 +168,6 @@ const StyledRegistrationForm = ({ category }: RegistrationFormProps) => {
 
 Thank you for choosing Stallion Classic — we look forward to seeing you at the event!`;
 
-      const encodedMessage = encodeURIComponent(message);
       const cleanedNumber = formData.phoneNumber.replace(/\D/g, "");
       const last10Digits = cleanedNumber.slice(-10);
       const formattedNumber = `91${last10Digits}`;
