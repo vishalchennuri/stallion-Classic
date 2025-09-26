@@ -155,6 +155,9 @@ const StyledRegistrationForm = ({ category }: RegistrationFormProps) => {
       console.log(formData)
 
       setSuccess(true);
+      const queryText = `Hi, I’d like to know about the payment process for my category - ${currentCategory.title}`;
+      const buttonUrl = `https://wa.me/917893743260?text=${encodeURIComponent(queryText)}`;
+
       const message = `👋 Hello ${formData.fullName},
 
 ✅ Your registration for *Stallion Classic 2025* has been received successfully!
@@ -178,6 +181,7 @@ Thank you for choosing Stallion Classic — we look forward to seeing you at the
         body: JSON.stringify({
           to: formattedNumber,
           message,
+          buttonUrl,
         }),
       });
 
