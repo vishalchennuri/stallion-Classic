@@ -44,7 +44,8 @@ const CategoriesGrid = () => {
       subtitle: '',
       description: 'For female athletes',
       subcategories: [
-        'Bikini (Open)'
+        'Bikini (Open)',
+        'Women\'s Body Building (Open)',
       ]
     },
     {

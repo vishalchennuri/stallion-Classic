@@ -109,7 +109,9 @@ const StyledRegistrationForm = ({ category }: RegistrationFormProps) => {
     womens: {
       title: 'WOMEN\'S CATEGORIES',
       subcategories: [
-        'Bikini (Open)'
+        'Bikini (Open)',
+        'Women\'s Body Building (Open)',
+
       ],
     },
     star: {
