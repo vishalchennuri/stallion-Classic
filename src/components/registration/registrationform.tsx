@@ -158,7 +158,7 @@ const StyledRegistrationForm = ({ category }: RegistrationFormProps) => {
 
       setSuccess(true);
       const queryText = `Hi, I’d like to know about the payment process for my category - ${currentCategory.title}`;
-      const buttonUrl = `https://wa.me/917893743260?text=${encodeURIComponent(queryText)}`;
+      const buttonUrl = `https://wa.me/917416352913?text=${encodeURIComponent(queryText)}`;
 
       const message = `👋 Hello ${formData.fullName},
 
