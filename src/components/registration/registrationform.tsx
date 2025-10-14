@@ -5,7 +5,6 @@ import { getFirestore, collection, addDoc, serverTimestamp } from "firebase/fire
 import { useRouter } from "next/navigation";
 import { AnimatedButton } from "../ui/AnimatedComponents";
 
-// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyB6xSNB6LNRneOzkUcpfLIY5wmHwtd-khI",
   authDomain: "stallion-classic.firebaseapp.com",
@@ -15,7 +14,6 @@ const firebaseConfig = {
   appId: "1:304093197633:web:031b2d29a457892de59dc0"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
@@ -24,22 +22,14 @@ interface FormData {
   phoneNumber: string;
   whatsappNumber: string;
   email: string;
-  dateOfBirth: string;
+  age: string;
   gender: string;
-  height: string;
-  weight: string;
-  subcategory: string;
-  experience: string;
-  previousCompetitions: string;
   address: string;
   city: string;
   state: string;
   pincode: string;
   emergencyContact: string;
   emergencyRelation: string;
-  medicalConditions: string;
-  dietPreference: string;
-  tshirtSize: string;
   agreeTerms: boolean;
 }
 
@@ -57,26 +47,17 @@ const StyledRegistrationForm = ({ category }: RegistrationFormProps) => {
     phoneNumber: '',
     whatsappNumber: '',
     email: '',
-    dateOfBirth: '',
+    age: '',
     gender: '',
-    height: '',
-    weight: '',
-    subcategory: '',
-    experience: '',
-    previousCompetitions: '',
     address: '',
     city: '',
     state: '',
     pincode: '',
     emergencyContact: '',
     emergencyRelation: '',
-    medicalConditions: '',
-    dietPreference: '',
-    tshirtSize: '',
     agreeTerms: false
   });
 
-  // Category configurations
   const categoryConfig = {
     junior: {
       title: 'JUNIOR CATEGORIES (Under 23 Years)',
@@ -111,7 +92,6 @@ const StyledRegistrationForm = ({ category }: RegistrationFormProps) => {
       subcategories: [
         'Bikini (Open)',
         'Women\'s Body Building (Open)',
-
       ],
     },
     star: {
@@ -129,15 +109,9 @@ const StyledRegistrationForm = ({ category }: RegistrationFormProps) => {
 
     if (type === 'checkbox') {
       const checked = (e.target as HTMLInputElement).checked;
-      setFormData(prev => ({
-        ...prev,
-        [name]: checked
-      }));
+      setFormData(prev => ({ ...prev, [name]: checked }));
     } else {
-      setFormData(prev => ({
-        ...prev,
-        [name]: value
-      }));
+      setFormData(prev => ({ ...prev, [name]: value }));
     }
   };
 
@@ -154,11 +128,10 @@ const StyledRegistrationForm = ({ category }: RegistrationFormProps) => {
         status: 'pending',
         paymentStatus: 'pending'
       });
-      console.log(formData)
 
       setSuccess(true);
-      const queryText = `Hi, I’d like to know about the payment process for my category - ${currentCategory.title}`;
-      const buttonUrl = `https://wa.me/917416352913?text=${encodeURIComponent(queryText)}`;
+      const queryText = `Hi, I'd like to know about the payment process for my category - ${currentCategory.title}`;
+      const buttonUrl = `https://wa.me/917893743260?text=${encodeURIComponent(queryText)}`;
 
       const message = `👋 Hello ${formData.fullName},
 
@@ -167,7 +140,6 @@ const StyledRegistrationForm = ({ category }: RegistrationFormProps) => {
 📝 *Registration Details:*
 • Phone: ${formData.phoneNumber}
 • Category: ${currentCategory.title}
-• Sub-Category: ${formData.subcategory}
 
 *Next Step:* Please complete the payment to confirm your participation.
 
@@ -192,7 +164,6 @@ Thank you for choosing Stallion Classic — we look forward to seeing you at the
         alert("Registration saved, but failed to send WhatsApp message.");
       }
       router.push('/register?success=true');
-
 
     } catch (error) {
       console.error('Error submitting registration:', error);
@@ -229,7 +200,7 @@ Thank you for choosing Stallion Classic — we look forward to seeing you at the
             <h2 className="text-2xl sm:text-3xl font-[impact] text-[#282828] mb-4">REGISTRATION SUCCESSFUL!</h2>
             <p className="text-gray-700 font-[CreatoDisplay] mb-6">
               Thank you for registering for Stallion Classic 2025.
-              We&aposll contact you soon with further details.
+              We'll contact you soon with further details.
             </p>
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#dc4a26] mx-auto"></div>
             <p className="text-sm text-gray-500 mt-4 font-[CreatoDisplay]">Redirecting to homepage...</p>
@@ -242,7 +213,6 @@ Thank you for choosing Stallion Classic — we look forward to seeing you at the
   return (
     <div className="py-12 sm:py-16 md:py-24 bg-gray-50">
       <div className="container mx-auto max-w-4xl px-4">
-        {/* Header */}
         <div className="text-center mb-8 sm:mb-12">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#282828] mb-3 font-[impact]">
             {currentCategory.title}
@@ -252,7 +222,6 @@ Thank you for choosing Stallion Classic — we look forward to seeing you at the
           </p>
         </div>
 
-        {/* Registration Form */}
         <div className="bg-white border border-gray-200 rounded-lg p-6 sm:p-8">
           <form onSubmit={handleSubmit} className="space-y-8">
             {/* Personal Information */}
@@ -315,27 +284,28 @@ Thank you for choosing Stallion Classic — we look forward to seeing you at the
                 </div>
 
                 <div>
-                  <label className="block text-gray-700 mb-2 font-medium font-[CreatoDisplay]">Date of Birth *</label>
+                  <label className="block text-gray-700 mb-2 font-medium font-[CreatoDisplay]">Age *</label>
                   <input
-                    type="date"
-                    name="dateOfBirth"
-                    value={formData.dateOfBirth}
+                    type="number"
+                    name="age"
+                    value={formData.age}
                     onChange={handleInputChange}
                     required
-                    title="Date of Birth"
-                    placeholder="Select your date of birth"
+                    min="1"
+                    max="120"
                     className="w-full px-4 py-3 bg-white border border-gray-300 rounded-sm text-gray-800 focus:outline-none focus:border-[#dc4a26] transition-colors font-[CreatoDisplay]"
+                    placeholder="Enter your age"
                   />
                 </div>
 
                 <div>
                   <label className="block text-gray-700 mb-2 font-medium font-[CreatoDisplay]">Gender *</label>
                   <select
+                  title="he"
                     name="gender"
                     value={formData.gender}
                     onChange={handleInputChange}
                     required
-                    title="Gender Selection"
                     className="w-full px-4 py-3 bg-white border border-gray-300 rounded-sm text-gray-800 focus:outline-none focus:border-[#dc4a26] transition-colors font-[CreatoDisplay]"
                   >
                     <option value="">Select Gender</option>
@@ -345,62 +315,6 @@ Thank you for choosing Stallion Classic — we look forward to seeing you at the
                 </div>
               </div>
             </div>
-
-            {/* Physical Information */}
-            <div>
-              <div className="border-t border-gray-200 my-8"></div>
-              <h3 className="text-2xl sm:text-3xl font-[impact] text-[#282828] mb-6 flex items-center">
-                <span className="text-[#dc4a26] mr-3">📏</span>
-                PHYSICAL INFORMATION
-              </h3>
-
-              <div className="grid md:grid-cols-3 gap-6">
-                <div>
-                  <label className="block text-gray-700 mb-2 font-medium font-[CreatoDisplay]">Height (cm) *</label>
-                  <input
-                    type="number"
-                    name="height"
-                    value={formData.height}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-3 bg-white border border-gray-300 rounded-sm text-gray-800 focus:outline-none focus:border-[#dc4a26] transition-colors font-[CreatoDisplay]"
-                    placeholder="Enter height in cm"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-gray-700 mb-2 font-medium font-[CreatoDisplay]">Weight (kg) *</label>
-                  <input
-                    type="number"
-                    name="weight"
-                    value={formData.weight}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-3 bg-white border border-gray-300 rounded-sm text-gray-800 focus:outline-none focus:border-[#dc4a26] transition-colors font-[CreatoDisplay]"
-                    placeholder="Enter weight in kg"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-gray-700 mb-2 font-medium font-[CreatoDisplay]">Competition Category *</label>
-                  <select
-                    title="Select Sub-Category"
-                    name="subcategory"
-                    value={formData.subcategory}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-3 bg-white border border-gray-300 rounded-sm text-gray-800 focus:outline-none focus:border-[#dc4a26] transition-colors font-[CreatoDisplay]"
-                  >
-                    <option value="">Select Category</option>
-                    {currentCategory.subcategories.map((sub, index) => (
-                      <option key={index} value={sub}>{sub}</option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-            </div>
-
-
 
             {/* Address Information */}
             <div>
@@ -492,7 +406,7 @@ Thank you for choosing Stallion Classic — we look forward to seeing you at the
                 <div>
                   <label className="block text-gray-700 mb-2 font-medium font-[CreatoDisplay]">Relation *</label>
                   <select
-                    title="Select Relation"
+                  title="he"
                     name="emergencyRelation"
                     value={formData.emergencyRelation}
                     onChange={handleInputChange}
@@ -510,7 +424,6 @@ Thank you for choosing Stallion Classic — we look forward to seeing you at the
               </div>
             </div>
 
-
             {/* Terms and Conditions */}
             <div>
               <div className="border-t border-gray-200 my-8"></div>
@@ -519,7 +432,6 @@ Thank you for choosing Stallion Classic — we look forward to seeing you at the
                   type="checkbox"
                   name="agreeTerms"
                   id="agreeTerms"
-                  title="Accept Terms and Conditions"
                   checked={formData.agreeTerms}
                   onChange={handleInputChange}
                   required
@@ -538,10 +450,11 @@ Thank you for choosing Stallion Classic — we look forward to seeing you at the
                 <button
                   type="submit"
                   disabled={loading || !formData.agreeTerms}
-                  className={`w-full py-4 px-6 font-bold text-white text-lg font-[CreatoDisplay] tracking-wider transition-all duration-300 ${loading || !formData.agreeTerms
-                    ? 'bg-gray-400 cursor-not-allowed'
-                    : 'bg-[#dc4a26] hover:bg-opacity-90'
-                    }`}
+                  className={`w-full py-4 px-6 font-bold text-white text-lg font-[CreatoDisplay] tracking-wider transition-all duration-300 ${
+                    loading || !formData.agreeTerms
+                      ? 'bg-gray-400 cursor-not-allowed'
+                      : 'bg-[#dc4a26] hover:bg-opacity-90'
+                  }`}
                 >
                   {loading ? (
                     <div className="flex items-center justify-center space-x-2">

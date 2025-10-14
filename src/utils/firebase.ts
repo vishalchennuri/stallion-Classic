@@ -29,11 +29,8 @@ export interface RegistrationData {
   phoneNumber: string;
   whatsappNumber: string;
   email: string;
-  dateOfBirth: string;
+  age: string;
   gender: string;
-  height: string;
-  weight: string;
-  subcategory: string;
   address: string;
   city: string;
   state: string;
