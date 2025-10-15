@@ -24,6 +24,7 @@ interface FormData {
   email: string;
   age: string;
   gender: string;
+  subcategory: string;
   address: string;
   city: string;
   state: string;
@@ -49,6 +50,7 @@ const StyledRegistrationForm = ({ category }: RegistrationFormProps) => {
     email: '',
     age: '',
     gender: '',
+    subcategory: '',
     address: '',
     city: '',
     state: '',
@@ -133,7 +135,6 @@ const StyledRegistrationForm = ({ category }: RegistrationFormProps) => {
     
       const cleanedNumber = formData.phoneNumber.replace(/\D/g, "");
       const last10Digits = cleanedNumber.slice(-10);
-      const formattedNumber = `91${last10Digits}`;
 
       const res = await fetch("/api/send-whatsapp", {
         method: "POST",
@@ -187,7 +188,7 @@ const StyledRegistrationForm = ({ category }: RegistrationFormProps) => {
             <h2 className="text-2xl sm:text-3xl font-[impact] text-[#282828] mb-4">REGISTRATION SUCCESSFUL!</h2>
             <p className="text-gray-700 font-[CreatoDisplay] mb-6">
               Thank you for registering for Stallion Classic 2025.
-              We&aposll contact you soon with further details.
+              We'll contact you soon with further details.
             </p>
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#dc4a26] mx-auto"></div>
             <p className="text-sm text-gray-500 mt-4 font-[CreatoDisplay]">Redirecting to homepage...</p>
@@ -288,7 +289,7 @@ const StyledRegistrationForm = ({ category }: RegistrationFormProps) => {
                 <div>
                   <label className="block text-gray-700 mb-2 font-medium font-[CreatoDisplay]">Gender *</label>
                   <select
-                  title="he"
+                    title="Gender"
                     name="gender"
                     value={formData.gender}
                     onChange={handleInputChange}
@@ -300,6 +301,35 @@ const StyledRegistrationForm = ({ category }: RegistrationFormProps) => {
                     <option value="female">Female</option>
                   </select>
                 </div>
+              </div>
+            </div>
+
+            {/* Competition Category */}
+            <div>
+              <div className="border-t border-gray-200 my-8"></div>
+              <h3 className="text-2xl sm:text-3xl font-[impact] text-[#282828] mb-6 flex items-center">
+                <span className="text-[#dc4a26] mr-3">🏆</span>
+                COMPETITION CATEGORY
+              </h3>
+
+              <div>
+                <label className="block text-gray-700 mb-2 font-medium font-[CreatoDisplay]">Select Your Category *</label>
+                <select
+                  title="Subcategory"
+                  name="subcategory"
+                  value={formData.subcategory}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full px-4 py-3 bg-white border border-gray-300 rounded-sm text-gray-800 focus:outline-none focus:border-[#dc4a26] transition-colors font-[CreatoDisplay]"
+                >
+                  <option value="">Select your competition category</option>
+                  {currentCategory.subcategories.map((sub, idx) => (
+                    <option key={idx} value={sub}>{sub}</option>
+                  ))}
+                </select>
+                <p className="text-sm text-gray-500 mt-2 font-[CreatoDisplay]">
+                  Choose the category that best matches your physique and qualifications
+                </p>
               </div>
             </div>
 
@@ -393,7 +423,7 @@ const StyledRegistrationForm = ({ category }: RegistrationFormProps) => {
                 <div>
                   <label className="block text-gray-700 mb-2 font-medium font-[CreatoDisplay]">Relation *</label>
                   <select
-                  title="he"
+                    title="Relation"
                     name="emergencyRelation"
                     value={formData.emergencyRelation}
                     onChange={handleInputChange}

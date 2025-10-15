@@ -39,6 +39,7 @@ export interface RegistrationData {
   emergencyRelation: string;
   category: string;
   categoryTitle: string;
+    subcategory: string;
   registrationDate: Timestamp | Date | string;
   status: 'pending' | 'approved' | 'rejected';
   paymentStatus: 'pending' | 'paid' | 'failed';
