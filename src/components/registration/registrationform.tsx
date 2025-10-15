@@ -130,21 +130,7 @@ const StyledRegistrationForm = ({ category }: RegistrationFormProps) => {
       });
 
       setSuccess(true);
-      const queryText = `Hi, I'd like to know about the payment process for my category - ${currentCategory.title}`;
-      const buttonUrl = `https://wa.me/917893743260?text=${encodeURIComponent(queryText)}`;
-
-      const message = `👋 Hello ${formData.fullName},
-
-✅ Your registration for *Stallion Classic 2025* has been received successfully!
-
-📝 *Registration Details:*
-• Phone: ${formData.phoneNumber}
-• Category: ${currentCategory.title}
-
-*Next Step:* Please complete the payment to confirm your participation.
-
-Thank you for choosing Stallion Classic — we look forward to seeing you at the event!`;
-
+    
       const cleanedNumber = formData.phoneNumber.replace(/\D/g, "");
       const last10Digits = cleanedNumber.slice(-10);
       const formattedNumber = `91${last10Digits}`;
@@ -153,9 +139,10 @@ Thank you for choosing Stallion Classic — we look forward to seeing you at the
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          to: formattedNumber,
-          message,
-          buttonUrl,
+          to: last10Digits,
+          name: formData.fullName,
+          category: currentCategory.title,
+          subCategory: formData.subcategory,
         }),
       });
 
