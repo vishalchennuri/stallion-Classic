@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
-    const { to, message, buttonUrl } = await req.json();
+    const { to, name, category, subCategory, } = await req.json();
 
     const PHONE_NUMBER_ID = process.env.PHONE_NUMBER_ID;
     const WHATSAPP_TOKEN = process.env.WHATSAPP_TOKEN;
@@ -12,42 +12,49 @@ export async function POST(req: Request) {
     }
 
     const url = `https://graph.facebook.com/v20.0/${PHONE_NUMBER_ID}/messages`;
-
-    const body = {
+    const body_1 = {
       messaging_product: "whatsapp",
       to,
-      type: "interactive",
-      interactive: {
-        type: "cta_url",
-        header: {
-          type: "text",
-          text: "Complete your registration",
-        },
-        body: {
-          text: message,
-        },
-        footer: {
-          text: "Tap below to continue",
-        },
-        action: {
-          name: "cta_url",
-          parameters: {
-            display_text: "Payment Queries",
-            url: buttonUrl,
+      type: "template",
+      template: {
+        name: "welcome_classic",
+        language: { code: "en" },
+        components: [
+          {
+            type: "body",
+            parameters: [
+              { type: "text", text: name },
+              { type: "text", text: to },
+              { type: "text", text: category },
+              { type: "text", text: subCategory },
+            ],
           },
-        },
+          {
+            type: "button",
+            sub_type: "quick_reply",
+            index: "0",
+            parameters: [
+              { type: "text", text: "Payment Queries" },
+            ],
+          },
+        ],
       },
     };
+
     const response = await fetch(url, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${WHATSAPP_TOKEN}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(body),
+      body: JSON.stringify(body_1),
     });
-
     const data = await response.json();
+
+    console.log(data);
+
+
+
 
     if (!response.ok) {
       console.error("WhatsApp API Error:", data);
