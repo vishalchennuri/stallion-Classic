@@ -259,7 +259,7 @@ const StyledRegistrationForm = ({ category }: RegistrationFormProps) => {
             <h2 className="text-2xl sm:text-3xl font-[impact] text-[#282828] mb-4">REGISTRATION SUCCESSFUL!</h2>
             <p className="text-gray-700 font-[CreatoDisplay] mb-6">
               Thank you for registering for Stallion Classic 2025.
-              We'll contact you soon with further details.
+              We&aposll contact you soon with further details.
             </p>
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#dc4a26] mx-auto"></div>
             <p className="text-sm text-gray-500 mt-4 font-[CreatoDisplay]">Redirecting to homepage...</p>
