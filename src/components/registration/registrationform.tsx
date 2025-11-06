@@ -17,6 +17,12 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+interface SelectedCategory {
+  mainCategory: string;
+  mainCategoryTitle: string;
+  subcategory: string;
+}
+
 interface FormData {
   fullName: string;
   phoneNumber: string;
@@ -24,7 +30,7 @@ interface FormData {
   email: string;
   age: string;
   gender: string;
-  subcategory: string;
+  selectedCategories: SelectedCategory[];
   address: string;
   city: string;
   state: string;
@@ -42,6 +48,10 @@ const StyledRegistrationForm = ({ category }: RegistrationFormProps) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  
+  // For adding additional categories
+  const [currentMainCategory, setCurrentMainCategory] = useState('');
+  const [currentSubcategory, setCurrentSubcategory] = useState('');
 
   const [formData, setFormData] = useState<FormData>({
     fullName: '',
@@ -50,7 +60,7 @@ const StyledRegistrationForm = ({ category }: RegistrationFormProps) => {
     email: '',
     age: '',
     gender: '',
-    subcategory: '',
+    selectedCategories: [],
     address: '',
     city: '',
     state: '',
@@ -117,15 +127,70 @@ const StyledRegistrationForm = ({ category }: RegistrationFormProps) => {
     }
   };
 
+  // Add a category to the list
+  const handleAddCategory = () => {
+    if (!currentMainCategory || !currentSubcategory) {
+      alert('Please select both main category and subcategory');
+      return;
+    }
+
+    const categoryExists = formData.selectedCategories.some(
+      cat => cat.mainCategory === currentMainCategory && cat.subcategory === currentSubcategory
+    );
+
+    if (categoryExists) {
+      alert('This category is already added!');
+      return;
+    }
+
+    const newCategory: SelectedCategory = {
+      mainCategory: currentMainCategory,
+      mainCategoryTitle: categoryConfig[currentMainCategory as keyof typeof categoryConfig].title,
+      subcategory: currentSubcategory
+    };
+
+    setFormData(prev => ({
+      ...prev,
+      selectedCategories: [...prev.selectedCategories, newCategory]
+    }));
+
+    setCurrentMainCategory('');
+    setCurrentSubcategory('');
+  };
+
+  const handleRemoveCategory = (index: number) => {
+    setFormData(prev => ({
+      ...prev,
+      selectedCategories: prev.selectedCategories.filter((_, i) => i !== index)
+    }));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (formData.selectedCategories.length === 0) {
+      alert('Please add at least one category');
+      return;
+    }
+
     setLoading(true);
 
     try {
+      // Save to Firebase
       await addDoc(collection(db, 'registrations'), {
-        ...formData,
-        category,
-        categoryTitle: currentCategory.title,
+        fullName: formData.fullName,
+        phoneNumber: formData.phoneNumber,
+        whatsappNumber: formData.whatsappNumber,
+        email: formData.email,
+        age: formData.age,
+        gender: formData.gender,
+        selectedCategories: formData.selectedCategories,
+        address: formData.address,
+        city: formData.city,
+        state: formData.state,
+        pincode: formData.pincode,
+        emergencyContact: formData.emergencyContact,
+        emergencyRelation: formData.emergencyRelation,
         registrationDate: serverTimestamp(),
         status: 'pending',
         paymentStatus: 'pending'
@@ -133,8 +198,13 @@ const StyledRegistrationForm = ({ category }: RegistrationFormProps) => {
 
       setSuccess(true);
     
+      // Send WhatsApp message
       const cleanedNumber = formData.phoneNumber.replace(/\D/g, "");
       const last10Digits = cleanedNumber.slice(-10);
+
+      const categoriesText = formData.selectedCategories.map(
+        cat => `${cat.mainCategoryTitle} - ${cat.subcategory}`
+      ).join(', ');
 
       const res = await fetch("/api/send-whatsapp", {
         method: "POST",
@@ -142,8 +212,8 @@ const StyledRegistrationForm = ({ category }: RegistrationFormProps) => {
         body: JSON.stringify({
           to: last10Digits,
           name: formData.fullName,
-          category: currentCategory.title,
-          subCategory: formData.subcategory,
+          category: categoriesText,
+          subCategory: `${formData.selectedCategories.length} categories`,
         }),
       });
 
@@ -151,6 +221,7 @@ const StyledRegistrationForm = ({ category }: RegistrationFormProps) => {
         console.error("WhatsApp send failed", await res.json());
         alert("Registration saved, but failed to send WhatsApp message.");
       }
+      
       router.push('/register?success=true');
 
     } catch (error) {
@@ -188,7 +259,7 @@ const StyledRegistrationForm = ({ category }: RegistrationFormProps) => {
             <h2 className="text-2xl sm:text-3xl font-[impact] text-[#282828] mb-4">REGISTRATION SUCCESSFUL!</h2>
             <p className="text-gray-700 font-[CreatoDisplay] mb-6">
               Thank you for registering for Stallion Classic 2025.
-              We&aposll contact you soon with further details.
+              We'll contact you soon with further details.
             </p>
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#dc4a26] mx-auto"></div>
             <p className="text-sm text-gray-500 mt-4 font-[CreatoDisplay]">Redirecting to homepage...</p>
@@ -198,12 +269,16 @@ const StyledRegistrationForm = ({ category }: RegistrationFormProps) => {
     );
   }
 
+  const availableSubcategories = currentMainCategory 
+    ? categoryConfig[currentMainCategory as keyof typeof categoryConfig]?.subcategories || []
+    : [];
+
   return (
     <div className="py-12 sm:py-16 md:py-24 bg-gray-50">
       <div className="container mx-auto max-w-4xl px-4">
         <div className="text-center mb-8 sm:mb-12">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#282828] mb-3 font-[impact]">
-            {currentCategory.title}
+            REGISTRATION FORM
           </h1>
           <p className="text-xl sm:text-2xl text-gray-700 font-[CreatoDisplay]">
             Complete your registration for Stallion Classic 2025
@@ -304,33 +379,101 @@ const StyledRegistrationForm = ({ category }: RegistrationFormProps) => {
               </div>
             </div>
 
-            {/* Competition Category */}
+            {/* Competition Categories - UPDATED SECTION */}
             <div>
               <div className="border-t border-gray-200 my-8"></div>
               <h3 className="text-2xl sm:text-3xl font-[impact] text-[#282828] mb-6 flex items-center">
                 <span className="text-[#dc4a26] mr-3">🏆</span>
-                COMPETITION CATEGORY
+                COMPETITION CATEGORIES
               </h3>
 
-              <div>
-                <label className="block text-gray-700 mb-2 font-medium font-[CreatoDisplay]">Select Your Category *</label>
-                <select
-                  title="Subcategory"
-                  name="subcategory"
-                  value={formData.subcategory}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full px-4 py-3 bg-white border border-gray-300 rounded-sm text-gray-800 focus:outline-none focus:border-[#dc4a26] transition-colors font-[CreatoDisplay]"
-                >
-                  <option value="">Select your competition category</option>
-                  {currentCategory.subcategories.map((sub, idx) => (
-                    <option key={idx} value={sub}>{sub}</option>
-                  ))}
-                </select>
-                <p className="text-sm text-gray-500 mt-2 font-[CreatoDisplay]">
-                  Choose the category that best matches your physique and qualifications
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                <p className="text-sm text-gray-700 font-[CreatoDisplay]">
+                  💡 You can register for multiple categories! Add all the categories you want to compete in.
                 </p>
               </div>
+
+              {/* Add Category Section */}
+              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-6">
+                <h4 className="text-lg font-bold text-[#282828] mb-4 font-[CreatoDisplay]">Add Category</h4>
+                
+                <div className="grid md:grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <label className="block text-gray-700 mb-2 font-medium font-[CreatoDisplay]">Main Category</label>
+                    <select
+                      title="Main Category"
+                      value={currentMainCategory}
+                      onChange={(e) => {
+                        setCurrentMainCategory(e.target.value);
+                        setCurrentSubcategory('');
+                      }}
+                      className="w-full px-4 py-3 bg-white border border-gray-300 rounded-sm text-gray-800 focus:outline-none focus:border-[#dc4a26] transition-colors font-[CreatoDisplay]"
+                    >
+                      <option value="">Select Main Category</option>
+                      {Object.entries(categoryConfig).map(([key, config]) => (
+                        <option key={key} value={key}>{config.title}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-gray-700 mb-2 font-medium font-[CreatoDisplay]">Subcategory</label>
+                    <select
+
+                      title="Subcategory"
+                      value={currentSubcategory}
+                      onChange={(e) => setCurrentSubcategory(e.target.value)}
+                      disabled={!currentMainCategory}
+                      className="w-full px-4 py-3 bg-white border border-gray-300 rounded-sm text-gray-800 focus:outline-none focus:border-[#dc4a26] transition-colors font-[CreatoDisplay] disabled:bg-gray-100 disabled:cursor-not-allowed"
+                    >
+                      <option value="">Select Subcategory</option>
+                      {availableSubcategories.map((sub, idx) => (
+                        <option key={idx} value={sub}>{sub}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={handleAddCategory}
+                  className="w-full bg-green-600 hover:bg-green-700 text-white py-3 px-4 font-bold font-[CreatoDisplay] tracking-wider transition-colors rounded-sm"
+                >
+                  + ADD THIS CATEGORY
+                </button>
+              </div>
+
+              {/* Selected Categories List */}
+              {formData.selectedCategories.length > 0 && (
+                <div>
+                  <h4 className="text-lg font-bold text-[#282828] mb-4 font-[CreatoDisplay]">
+                    Selected Categories ({formData.selectedCategories.length})
+                  </h4>
+                  <div className="space-y-3">
+                    {formData.selectedCategories.map((cat, index) => (
+                      <div key={index} className="bg-white border-2 border-[#dc4a26] rounded-lg p-4 flex justify-between items-center">
+                        <div>
+                          <p className="font-bold text-[#282828] font-[CreatoDisplay]">{cat.mainCategoryTitle}</p>
+                          <p className="text-sm text-gray-600 font-[CreatoDisplay]">{cat.subcategory}</p>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveCategory(index)}
+                          className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-sm font-bold font-[CreatoDisplay] transition-colors"
+                        >
+                          REMOVE
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {formData.selectedCategories.length === 0 && (
+                <div className="text-center py-8 bg-gray-50 border-2 border-dashed border-gray-300 rounded-lg">
+                  <p className="text-gray-500 font-[CreatoDisplay]">No categories added yet. Add at least one category above.</p>
+                </div>
+              )}
             </div>
 
             {/* Address Information */}
@@ -466,9 +609,9 @@ const StyledRegistrationForm = ({ category }: RegistrationFormProps) => {
               <AnimatedButton>
                 <button
                   type="submit"
-                  disabled={loading || !formData.agreeTerms}
+                  disabled={loading || !formData.agreeTerms || formData.selectedCategories.length === 0}
                   className={`w-full py-4 px-6 font-bold text-white text-lg font-[CreatoDisplay] tracking-wider transition-all duration-300 ${
-                    loading || !formData.agreeTerms
+                    loading || !formData.agreeTerms || formData.selectedCategories.length === 0
                       ? 'bg-gray-400 cursor-not-allowed'
                       : 'bg-[#dc4a26] hover:bg-opacity-90'
                   }`}
@@ -479,7 +622,7 @@ const StyledRegistrationForm = ({ category }: RegistrationFormProps) => {
                       <span>SUBMITTING REGISTRATION...</span>
                     </div>
                   ) : (
-                    'COMPLETE REGISTRATION'
+                    `COMPLETE REGISTRATION (${formData.selectedCategories.length} ${formData.selectedCategories.length === 1 ? 'CATEGORY' : 'CATEGORIES'})`
                   )}
                 </button>
               </AnimatedButton>
@@ -493,6 +636,7 @@ const StyledRegistrationForm = ({ category }: RegistrationFormProps) => {
             <h4 className="text-xl sm:text-2xl font-[impact] text-[#282828] mb-4">📋 IMPORTANT NOTES:</h4>
             <ul className="space-y-2 text-gray-700 text-sm font-[CreatoDisplay]">
               <li>• All fields marked with (*) are mandatory</li>
+              <li>• You can register for multiple categories in a single registration</li>
               <li>• Ensure your phone number and WhatsApp number are active</li>
               <li>• Keep your required documents ready for verification</li>
               <li>• Registration fee payment details will be shared after form submission</li>
